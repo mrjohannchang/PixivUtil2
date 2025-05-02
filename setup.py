@@ -134,21 +134,21 @@ setup(
     **setup_kwargs
 )
 
-if isWindows:
-    print("Adding cacert.pem.")
-    # add certify cacert.pem in library.zip/certifi
-    import zipfile
-
-    import certifi
-    zip2 = zipfile.ZipFile('./dist/library.zip', 'a')
-    zip2.write(certifi.where(), "/certifi/cacert.pem")
-    zip2.close()
-
-    print("Adding browsers.json.")
-    import shutil
-    import cloudscraper
-    # need to bundle browser json
-    browser_json_location = cloudscraper.__file__.replace('__init__.py', 'user_agent\\browsers.json')
-    shutil.copy(browser_json_location, "dist/browsers.json")
-
-    print("update done.")
+# if isWindows:
+#     print("Adding cacert.pem.")
+#     # add certify cacert.pem in library.zip/certifi
+#     import zipfile
+#
+#     import certifi
+#     zip2 = zipfile.ZipFile('./dist/library.zip', 'a')
+#     zip2.write(certifi.where(), "/certifi/cacert.pem")
+#     zip2.close()
+#
+#     print("Adding browsers.json.")
+#     import shutil
+#     import cloudscraper
+#     # need to bundle browser json
+#     browser_json_location = cloudscraper.__file__.replace('__init__.py', 'user_agent\\browsers.json')
+#     shutil.copy(browser_json_location, "dist/browsers.json")
+#
+#     print("update done.")
