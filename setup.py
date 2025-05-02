@@ -74,16 +74,17 @@ if not isWindows:
         exit(-1)
 
 
-if isWindows:
-    import py2exe
+# if isWindows:
+#     import py2exe
 
 console = [{"script": "PixivUtil2.py",              # Main Python script
             "icon_resources": [(0, "icon2.ico")]}]  # Icon to embed into the PE file.
 requires = ['bs4', 'html5lib', 'sqlite3']
-options = {'py2exe': {'bundle_files': 3,
-                      'compressed': 1,
-                      "packages": ['html5lib', 'sqlite3', 'cloudscraper'],
-                      'excludes': ['Tkconstants', 'Tkinter']}, }
+options = {}
+# options = {'py2exe': {'bundle_files': 3,
+#                       'compressed': 1,
+#                       "packages": ['html5lib', 'sqlite3', 'cloudscraper'],
+#                       'excludes': ['Tkconstants', 'Tkinter']}, }
 
 setup_kwargs = dict(console=console, requires=requires, options=options)
 
