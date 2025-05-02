@@ -2,18 +2,33 @@
 # -*- coding: utf-8 -*-
 import platform
 import sys
+import os
+import pathlib
 from os import path
 
-try:
-    from setuptools import convert_path, find_packages, setup
-    SETUPTOOLS_USED = True
-except ImportError:
-    from distutils.core import find_packages, setup
-    from distutils.util import convert_path
-    SETUPTOOLS_USED = False
+from setuptools import find_packages, setup
+SETUPTOOLS_USED = True
 
 isWindows = (platform.system() == "Windows")
 ranWithPy3 = sys.version_info >= (3, 0)
+
+
+def convert_path(pathname: str | os.PathLike[str]) -> str:
+    r"""
+    Allow for pathlib.Path inputs, coax to a native path string.
+
+    If None is passed, will just pass it through as
+    Setuptools relies on this behavior.
+
+    >>> convert_path(None) is None
+    True
+
+    Removes empty paths.
+
+    >>> convert_path('foo/./bar').replace('\\', '/')
+    'foo/bar'
+    """
+    return os.fspath(pathlib.PurePath(pathname))
 
 
 # Terminal colors on *nix systems
